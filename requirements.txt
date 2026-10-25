@@ -1,0 +1,5 @@
+nselib
+pandas
+requests
+gspread
+google-auth
