@@ -1,0 +1,23 @@
+schedule:
+       - cron: '30 12 * * 1-5' # Runs at 6:00 PM IST (12:30 UTC) Monday-Friday
+     workflow_dispatch: # Allows manual trigger from GitHub UI
+
+   jobs:
+     run-script:
+       runs-on: ubuntu-latest
+       steps:
+         - name: Checkout Repository
+           uses: actions/checkout@v4.2.2
+
+         - name: Set up Python
+           uses: actions/setup-python@v5.4.0
+           with:
+             python-version: '3.10'
+
+         - name: Install Dependencies
+           run: |
+             pip install --upgrade pip
+             pip install -r requirements.txt
+
+         - name: Run Script
+           run: python fetch_indices.py
